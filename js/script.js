@@ -81,25 +81,23 @@ if (productCard) {
 document.querySelectorAll(".subscription").forEach((sub, i, all) => {
   const radio = sub.querySelector("input");
   const header = sub.querySelector(".subscription-header");
+
   const activate = () => {
-    all.forEach((s) => {
+    all.forEach(s => {
       s.classList.remove("selected");
-      s.style.maxHeight =
-        s.querySelector(".subscription-header").offsetHeight + "px";
       s.querySelector("input").checked = false;
     });
+
     sub.classList.add("selected");
     radio.checked = true;
-    sub.style.maxHeight = sub.scrollHeight + "px";
   };
-  i === 0 && activate();
+
+  if (i === 0) activate();
   header.addEventListener("click", activate);
   radio.addEventListener("change", activate);
 });
-document.querySelectorAll(".fragrance").forEach((f) => {
-  const radio = f.querySelector("input");
-  f.addEventListener("click", () => radio && (radio.checked = true));
-});
+
+
 document.querySelectorAll(".accordion-item").forEach((item) => {
   const header = item.querySelector(".accordion-header");
   const content = item.querySelector("p");
@@ -145,3 +143,38 @@ if (innerWidth <= 900) {
         .forEach((cell, i) => (cell.dataset.product = products[i]))
     );
 }
+
+document.querySelectorAll(".fragrance").forEach((f) => {
+  const radio = f.querySelector("input");
+  f.addEventListener("click", () => radio && (radio.checked = true));
+});
+
+document.getElementById('addToCart').addEventListener('click', () => {
+  let url = 'go-to/';
+  const selectedSub = document.querySelector('input[name="subscription"]:checked');
+
+  if (!selectedSub) {
+    alert('Select a subscription');
+    return;
+  }
+
+  if (selectedSub.value === 'single') {
+    const fragrance = document.querySelector('input[name="fragrance1"]:checked');
+    if (!fragrance) {
+      alert('Select a fragrance');
+      return;
+    }
+    url += `single-subscription/${fragrance.value}`;
+  } else if (selectedSub.value === 'double') {
+    const f1 = document.querySelector('input[name="fragrance4"]:checked');
+    const f2 = document.querySelector('input[name="fragrance7"]:checked');
+    if (!f1 || !f2) {
+      alert('Select both fragrances');
+      return;
+    }
+    url += `double-subscription/${f1.value}/${f2.value}`;
+  }
+
+  console.log('Redirecting to:', url); 
+  window.location.href = url;
+});
