@@ -477,12 +477,15 @@ h1 {
 .subscription:not(.selected) .subscription-header {
     padding: 16px;
 }
+.subscription.selected .subscription-header {
+    border-bottom: 1.01px solid #919798
+}
 .subscription-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    border-bottom: 1.01px solid #919798
+   
 }
 .subscription-header label {
     color: #322D2D;
@@ -527,30 +530,44 @@ h3 {
     flex-wrap: wrap;
     padding: 0 30px;
 }
+
 .fragrance {
-    border-radius: 8px;
-    flex: 0.2 1 100px;
-    text-align: center;
-    background: #F9F9F9;
     position: relative;
+    border-radius: 8px;
+    background: #F9F9F9;
+    flex: 0.2 1 100px;
+    min-height: 180px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: auto;
     cursor: pointer;
-    min-height: 180px;
 }
+
+.radio-label {
+    position: absolute;
+    top: 16px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    z-index: 10;
+    color: #919798;
+}
+
+.fragrance-radio {
+    margin: 0;
+    accent-color: #2e7d32;
+}
+
 .fragrance img {
     height: 70px;
     width: auto;
 }
-.fragrance p {
-    margin-top: 5px;
-    font-size: 13px;
-}
+
 .tag {
-    font-family: Inter;
     position: absolute;
     top: -10px;
     right: 0;
@@ -561,16 +578,10 @@ h3 {
     color: #fff;
     font-size: 9px;
     font-weight: 600;
-    text-align: center;
     line-height: 12px;
     white-space: nowrap;
 }
-.fragrance-radio {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 10;
-}
+
 input[type="radio"] {
     accent-color: #2e7d32;
 }
