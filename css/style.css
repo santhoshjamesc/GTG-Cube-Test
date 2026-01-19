@@ -739,6 +739,7 @@ input[type="radio"] {
     margin-top: 0;
 }
 .accordion-item.active p {
+    max-height: 100%;
     opacity: 1;
     margin-top: 40px;
 }
@@ -1372,3 +1373,4 @@ input[type="radio"] {
         gap: 12px 0;
     }
 }
+
